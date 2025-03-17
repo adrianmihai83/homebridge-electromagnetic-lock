@@ -43,3 +43,7 @@ Fields:
 - check platform: [Homebridge](https://github.com/nfarina/homebridge)
 - check plugin dependency: [underscore](Install: npm install underscore -> https://www.npmjs.com/package/underscore)
 - check plugin dependency: [rpi-gpio](Install: np install rpi-gpio -> https://www.npmjs.com/package/rpi-gpio)
+
+## Attribution
+
+This project is based on Homebridge GPIO Electromagnetic Lock by Panda Unit sp. z o.o. (github.com/pandaunit/homebridge-gpio-electromagnetic-lock).

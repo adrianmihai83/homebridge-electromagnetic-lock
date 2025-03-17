@@ -48,7 +48,7 @@ function ElectromagneticLockAccessory(log, config) {
 
   this.infoService = new Service.AccessoryInformation();
   this.infoService
-    .setCharacteristic(Characteristic.Manufacturer, "Adrian Mihai")
+    .setCharacteristic(Characteristic.Manufacturer, "Panda Unit")
     .setCharacteristic(Characteristic.Model, "RaspberryPi GPIO Electromagnetic Lock")
     .setCharacteristic(Characteristic.SerialNumber, "Version 1.0.0");
 
