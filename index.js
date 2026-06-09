@@ -1,8 +1,7 @@
 var _ = require("underscore");
+var Gpio = require("node-libgpiod");
 
 var Service, Characteristic, HomebridgeAPI;
-
-var GPIO = require("rpi-gpio");
 
 const STATE_UNSECURED = 0;
 const STATE_SECURED = 1;
@@ -18,13 +17,14 @@ module.exports = function (homebridge) {
 };
 
 function ElectromagneticLockAccessory(log, config) {
-  _.defaults(config, { activeLow: true, unlockingDuration: 2 });
+  _.defaults(config, { activeLow: true, unlockingDuration: 2, gpioChip: 0 });
 
   this.log = log;
   this.name = config["name"];
   this.lockPin = config["lockPin"];
   this.activeLow = config["activeLow"];
   this.unlockingDuration = config["unlockingDuration"];
+  this.gpioChipNumber = config["gpioChip"];
 
   this.cacheDirectory = HomebridgeAPI.user.persistPath();
   this.storage = require("node-persist");
@@ -54,14 +54,19 @@ function ElectromagneticLockAccessory(log, config) {
 
   this.unlockTimeout;
 
-  GPIO.MODE_RPI;
-  GPIO.setup(this.lockPin, this.activeLow ? GPIO.DIR_HIGH : GPIO.DIR_LOW);
-  //this.log("pin setup complete");
+  this.gpioChip = new Gpio.Chip(this.gpioChipNumber);
+  this.lockLine = new Gpio.Line(this.gpioChip, this.lockPin);
+  this.lockLine.requestOutputMode();
+  this.writeLockPin(this.activeLow ? 1 : 0);
 
   this.service.getCharacteristic(Characteristic.LockCurrentState).on("get", this.getCurrentState.bind(this));
 
   this.service.getCharacteristic(Characteristic.LockTargetState).on("get", this.getTargetState.bind(this)).on("set", this.setTargetState.bind(this));
 }
+
+ElectromagneticLockAccessory.prototype.writeLockPin = function (value) {
+  this.lockLine.setValue(value ? 1 : 0);
+};
 
 ElectromagneticLockAccessory.prototype.getCurrentState = function (callback) {
   //this.log("Lock current state: %s", this.currentState);
@@ -80,8 +85,7 @@ ElectromagneticLockAccessory.prototype.setTargetState = function (state, callbac
     callback();
   } else {
     this.log("Setting " + this.name + " to %s", state ? "STATE_SECURED" : "STATE_UNSECURED");
-    GPIO.write(this.lockPin, this.activeLow ? false : true);
-    //this.log("Setting lockPin " + this.lockPin + " to state %s", this.activeLow ? "LOW" : "HIGH");
+    this.writeLockPin(this.activeLow ? 0 : 1);
     this.service.setCharacteristic(Characteristic.LockCurrentState, state);
     this.lockState = state;
     this.storage.setItemSync(this.name, this.lockState);
@@ -92,8 +96,7 @@ ElectromagneticLockAccessory.prototype.setTargetState = function (state, callbac
 
 ElectromagneticLockAccessory.prototype.secureLock = function () {
   this.log("Setting " + this.name + " to STATE_SECURED");
-  GPIO.write(this.lockPin, this.activeLow ? true : false);
-  //this.log("Setting lockPin " + this.lockPin + " to state %s", this.activeLow ? "HIGH" : "LOW");
+  this.writeLockPin(this.activeLow ? 1 : 0);
   this.service.updateCharacteristic(Characteristic.LockTargetState, STATE_SECURED);
   this.service.updateCharacteristic(Characteristic.LockCurrentState, STATE_SECURED);
   this.currentState = STATE_SECURED;

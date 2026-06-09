@@ -10,7 +10,8 @@
     {
       "accessory": "ElectromagneticLock",
       "name": "Lock",
-      "lockPin": 6,
+      "lockPin": 18,
+      "gpioChip": 0,
       "activeLow": true,
       "unlockingDuration": 2
     }

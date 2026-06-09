@@ -13,10 +13,16 @@
         "description": "accessory name, e.g. Lock"
       },
       "lockPin": {
-        "title": "Lock GPIO pin",
+        "title": "Lock GPIO line",
         "type": "integer",
         "required": true,
-        "description": "pin for unlocking lock (use Rpi numbering)"
+        "description": "BCM GPIO / libgpiod line number for unlocking lock, not physical board pin"
+      },
+      "gpioChip": {
+        "title": "GPIO chip",
+        "type": "integer",
+        "default": 0,
+        "description": "GPIO chip number used by libgpiod, usually 0 on Raspberry Pi"
       },
       "activeLow": {
         "title": "Relay activated by low state?",

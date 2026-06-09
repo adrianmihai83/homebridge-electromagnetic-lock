@@ -24,7 +24,8 @@
     "watch": "npm link && nodemon"
   },
   "engines": {
-    "homebridge": ">=1.2.3"
+    "homebridge": "^1.6.0 || ^2.0.0",
+    "node": "^20.0.0 || ^22.12.0 || ^24.0.0"
   },
   "files": [
     "Changelog.md",
@@ -35,10 +36,12 @@
   ],
   "main": "index.js",
   "dependencies": {
+    "node-libgpiod": "^0.6.0",
     "node-persist": "^2.1.0",
-    "nodemon": "^3.0.1",
-    "rpi-gpio": "^2.1.7",
     "underscore": "^1.13.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   },
   "maintainers": [
     {
