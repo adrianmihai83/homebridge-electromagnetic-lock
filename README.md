@@ -1,6 +1,6 @@
-# Homebridge2 Electromagnetic Lock
+# Homebridge Electromagnetic Lock
 
-Homebridge2 Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines.
+Homebridge Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines.
 
 ## Objective
 
@@ -13,7 +13,7 @@ Electromagnetic lock controlled through libgpiod.
 2. install libgpiod
    `sudo apt install -y gpiod libgpiod-dev`
 3. install this plugin
-   `npm install -g homebridge-electromagnetic-lock-v2`
+   `npm install -g homebridge-electromagnetic-lock`
 4. update your `~/.homebridge/config.json` file (use `sample-config.json` as a reference)
 
 ## Configuration
@@ -23,7 +23,7 @@ Sample accessory:
 ```
 "accessories": [
   {
-    "accessory": "ElectromagneticLock2",
+    "accessory": "ElectromagneticLock",
     "name": "Lock",
     "lockPin": 18,
     "gpioChip": 0,
@@ -35,7 +35,7 @@ Sample accessory:
 
 Fields:
 
-- `accessory` must always be _ElectromagneticLock2_
+- `accessory` must always be _ElectromagneticLock_
 - `name` accessory name, e.g. _Lock_
 - `lockPin` BCM GPIO / libgpiod line number for unlocking lock, not physical board pin
 - `gpioChip` [optional, default: *0*] GPIO chip number used by libgpiod, usually *0* on Raspberry Pi
@@ -43,6 +43,12 @@ Fields:
 - `unlockingDuration` [optional, default: *2*] how long _lockPin_ should be active (seconds)
 
 For example, Raspberry Pi physical pin 12 is BCM GPIO 18, so use `"lockPin": 18`.
+
+## Upgrading from v1.x
+
+Version 2.0.0 changed the GPIO backend from rpi-gpio/sysfs to libgpiod. The `lockPin` option now uses the BCM GPIO / libgpiod line number, not the physical board pin.
+
+For example, if v1.x used physical pin 12, v2.x should use `"lockPin": 18`.
 
 ## Troubleshooting
 

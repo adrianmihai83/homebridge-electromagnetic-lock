@@ -1,8 +1,8 @@
 {
-  "pluginAlias": "ElectromagneticLock2",
+  "pluginAlias": "ElectromagneticLock",
   "pluginType": "accessory",
   "singular": false,
-  "headerDisplay": "Homebridge2 Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines connected to relay.",
+  "headerDisplay": "Homebridge Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines connected to relay.",
   "schema": {
     "type": "object",
     "properties": {
