@@ -1,6 +1,6 @@
-# Homebridge GPIO Electromagnetic Lock
+# Homebridge2 Electromagnetic Lock
 
-Homebridge plugin to control electromagnetic lock via Raspberry Pi GPIO lines.
+Homebridge2 Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines.
 
 ## Objective
 
@@ -13,7 +13,7 @@ Electromagnetic lock controlled through libgpiod.
 2. install libgpiod
    `sudo apt install -y gpiod libgpiod-dev`
 3. install this plugin
-   `npm install -g homebridge-wiringpi-electromagnetic-lock`
+   `npm install -g homebridge-electromagnetic-lock-v2`
 4. update your `~/.homebridge/config.json` file (use `sample-config.json` as a reference)
 
 ## Configuration
@@ -23,7 +23,7 @@ Sample accessory:
 ```
 "accessories": [
   {
-    "accessory": "ElectromagneticLock",
+    "accessory": "ElectromagneticLock2",
     "name": "Lock",
     "lockPin": 18,
     "gpioChip": 0,
@@ -35,7 +35,7 @@ Sample accessory:
 
 Fields:
 
-- `accessory` must always be _ElectromagneticLock_
+- `accessory` must always be _ElectromagneticLock2_
 - `name` accessory name, e.g. _Lock_
 - `lockPin` BCM GPIO / libgpiod line number for unlocking lock, not physical board pin
 - `gpioChip` [optional, default: *0*] GPIO chip number used by libgpiod, usually *0* on Raspberry Pi

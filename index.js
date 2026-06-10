@@ -13,7 +13,7 @@ module.exports = function (homebridge) {
   Characteristic = homebridge.hap.Characteristic;
   HomebridgeAPI = homebridge;
 
-  homebridge.registerAccessory("homebridge-electromagnetic-lock", "ElectromagneticLock", ElectromagneticLockAccessory);
+  homebridge.registerAccessory("homebridge-electromagnetic-lock-v2", "ElectromagneticLock2", ElectromagneticLockAccessory);
 };
 
 function ElectromagneticLockAccessory(log, config) {
@@ -50,7 +50,7 @@ function ElectromagneticLockAccessory(log, config) {
   this.infoService
     .setCharacteristic(Characteristic.Manufacturer, "Panda Unit")
     .setCharacteristic(Characteristic.Model, "RaspberryPi GPIO Electromagnetic Lock")
-    .setCharacteristic(Characteristic.SerialNumber, "Version 1.0.0");
+    .setCharacteristic(Characteristic.SerialNumber, "Version 2.0.0");
 
   this.unlockTimeout;
 
