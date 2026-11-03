@@ -41,7 +41,7 @@
   ],
   "main": "index.js",
   "optionalDependencies": {
-    "node-libgpiod": "https://github.com/adrianmihai83/node-libgpiod/archive/6e58a6aaf942046d61a45e0c4cb1270fc182464c.tar.gz"
+    "node-libgpiod": "^0.6.0"
   },
   "devDependencies": {}
 }
