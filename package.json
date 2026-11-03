@@ -1,52 +1,47 @@
 {
   "name": "homebridge-electromagnetic-lock",
-  "version": "2.0.1",
-  "description": "Homebridge Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines",
+  "version": "2.0.2",
+  "description": "Homebridge plugin to control an electromagnetic lock through Raspberry Pi GPIO lines",
+  "author": "adrianmihai83",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock"
+    "url": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock.git"
   },
+  "bugs": {
+    "url": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock/issues"
+  },
+  "homepage": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock#readme",
   "keywords": [
     "homebridge-plugin",
     "homebridge",
-    "raspberry",
+    "raspberry-pi",
     "gpio",
+    "libgpiod",
     "lock",
     "lock-mechanism",
     "electromagnetic-lock",
     "homekit"
   ],
   "scripts": {
-    "OH stop": "sudo hb-service stop",
-    "link": "npm link",
-    "OH start": "sudo hb-service start",
-    "watch": "npm link && nodemon"
+    "test": "node --test",
+    "check": "npm test && npm pack --dry-run",
+    "prepublishOnly": "npm test"
   },
   "engines": {
-    "homebridge": "^1.6.0 || ^2.0.0",
-    "node": "^20.0.0 || ^22.12.0 || ^24.0.0"
+    "homebridge": "^2.0.0",
+    "node": "^22.12.0 || ^24.0.0 || ^26.0.0"
   },
   "files": [
-    "Changelog.md",
-    "LICENSE.md",
+    "CHANGELOG.md",
+    "LICENSE",
     "README.md",
     "config.schema.json",
-    "dist"
+    "index.js"
   ],
   "main": "index.js",
-  "dependencies": {
-    "node-libgpiod": "^0.6.0",
-    "node-persist": "^2.1.0",
-    "underscore": "^1.13.6"
+  "optionalDependencies": {
+    "node-libgpiod": "^0.6.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "maintainers": [
-    {
-      "name": "adrianmihai83",
-      "email": "adrianmihai83@gmail.com"
-    }
-  ]
+  "devDependencies": {}
 }

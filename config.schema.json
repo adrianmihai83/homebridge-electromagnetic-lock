@@ -1,40 +1,48 @@
 {
   "pluginAlias": "ElectromagneticLock",
-  "pluginType": "accessory",
-  "singular": false,
-  "headerDisplay": "Homebridge Electromagnetic Lock plugin to control electromagnetic lock via Raspberry Pi GPIO lines connected to relay.",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Control an electromagnetic lock through a Raspberry Pi GPIO line connected to a relay. The lock always starts in the secured state.",
   "schema": {
     "type": "object",
+    "required": [
+      "name",
+      "lockPin"
+    ],
     "properties": {
       "name": {
-        "title": "Name",
+        "title": "Lock name",
         "type": "string",
-        "required": true,
-        "description": "accessory name, e.g. Lock"
+        "minLength": 1,
+        "default": "Lock",
+        "description": "Name shown in Apple Home"
       },
       "lockPin": {
         "title": "Lock GPIO line",
         "type": "integer",
-        "required": true,
-        "description": "BCM GPIO / libgpiod line number for unlocking lock, not physical board pin"
+        "minimum": 0,
+        "description": "BCM GPIO / libgpiod line number, not the physical board pin"
       },
       "gpioChip": {
         "title": "GPIO chip",
         "type": "integer",
+        "minimum": 0,
         "default": 0,
-        "description": "GPIO chip number used by libgpiod, usually 0 on Raspberry Pi"
+        "description": "libgpiod chip number; normally 0 on Raspberry Pi"
       },
       "activeLow": {
-        "title": "Relay activated by low state?",
+        "title": "Relay is active-low",
         "type": "boolean",
         "default": true,
-        "description": "true: relay activated by low state (0), false: relay activated by high state (1), affects lockPin"
+        "description": "Enable when GPIO value 0 activates the relay"
       },
       "unlockingDuration": {
-        "title": "Unlocking duration (seconds)",
+        "title": "Unlock duration",
         "type": "integer",
+        "minimum": 1,
+        "maximum": 3600,
         "default": 2,
-        "description": "how long lockPin should be active (seconds), default: 2"
+        "description": "Seconds before the lock automatically secures again"
       }
     }
   }

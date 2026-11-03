@@ -5,10 +5,10 @@
     "port": 51826,
     "pin": "031-45-154"
   },
-  "description": "This is an example configuration for the Homebridge Electromagnetic Lock plugin",
-  "accessories": [
+  "description": "Example configuration for Homebridge Electromagnetic Lock",
+  "platforms": [
     {
-      "accessory": "ElectromagneticLock",
+      "platform": "ElectromagneticLock",
       "name": "Lock",
       "lockPin": 18,
       "gpioChip": 0,
