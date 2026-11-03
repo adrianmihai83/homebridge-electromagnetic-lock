@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock.git"
+    "url": "git+https://github.com/adrianmihai83/homebridge-electromagnetic-lock.git"
   },
   "bugs": {
     "url": "https://github.com/adrianmihai83/homebridge-electromagnetic-lock/issues"
