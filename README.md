@@ -4,7 +4,7 @@ Control an electromagnetic lock through a Raspberry Pi GPIO line and expose it
 to Apple Home as a lock mechanism.
 
 Version 2.0.2 uses a Homebridge dynamic platform and is designed for
-Homebridge 2 with Node.js 22.12, 24, or 26.
+Homebridge 2 with Node.js 22.12 or 24.
 
 ## Safety behaviour
 
@@ -24,7 +24,7 @@ is released.
 ## Requirements
 
 - Homebridge 2.x
-- Node.js 22.12.x, 24.x, or 26.x
+- Node.js 22.12.x or 24.x
 - Raspberry Pi OS / Debian with a libgpiod 1.x development package
 - A relay interface suitable for the Raspberry Pi's 3.3 V GPIO
 
