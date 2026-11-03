@@ -11,6 +11,7 @@
 - Report GPIO failures as a jammed lock instead of crashing Homebridge.
 - Re-secure and release the GPIO line during Homebridge shutdown.
 - Remove `underscore` and `node-persist` runtime dependencies.
+- Update the native GPIO build toolchain for Node.js 22, 24, and 26.
 - Add configuration validation and automated tests.
 
 ## 2.0.1
