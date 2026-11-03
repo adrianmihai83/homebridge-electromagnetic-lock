@@ -32,7 +32,13 @@ jobs:
         run: npm ci
 
       - name: Verify native GPIO binding
-        run: node -e "require('node-libgpiod')"
+        run: |
+          if ! node -e "require('node-libgpiod')"; then
+            echo "Native dependency installation log:"
+            latest_log=$(ls -t "$HOME"/.npm/_logs/*-debug-0.log | head -1)
+            tail -300 "$latest_log"
+            exit 1
+          fi
 
       - name: Run tests
         run: npm test
